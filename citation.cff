@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it as below."
+title: "Teaching Longitudinal Linear Mixed Models End-to-End: A Reproducible Case Study in Mouse Body-Weight Growth"
+authors:
+  - family-names: "Adetunji"
+    given-names: "Sunday"
+repository-code: "https://github.com/drsunday-ade/Teaching-LMM-Mouse-BodyWeight"
+license: "MIT"
+type: software
+version: "0.1.0"
+date-released: "2025-11-18"
