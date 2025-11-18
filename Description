@@ -1,0 +1,177 @@
+Data
+
+File: data/BodyWeightData.xlsx
+
+Description:
+
+mouseid – mouse identifier (factor)
+
+grp – treatment group
+
+1 = wild-type
+
+2 = ob/ob pair-fed
+
+3 = ob/ob unrestricted
+
+bw1–bw12 – weekly body weights (grams, weeks 1–12)
+
+The scripts convert this to long format with:
+
+tw – time in weeks (1–12)
+
+weight – body weight in grams
+
+Scripts
+1. Main analysis script
+
+R/LMM_mouse_weight.R
+
+Imports BodyWeightData.xlsx and reshapes to long format.
+
+Produces Figure 1: individual trajectories + group mean curves.
+
+Fits three candidate LMMs (random intercept for mouse):
+
+Model 1: weight ~ tw + grp
+
+Model 2: weight ~ tw * grp
+
+Model 3: weight ~ tw + grp + tw:grp3
+
+Compares models via AIC/BIC and likelihood-ratio tests (ML).
+
+Extracts final model parameter estimates (Table 1).
+
+Derives and plots:
+
+Observed vs fitted group means (Figure 2).
+
+Weekly group differences via gmodels::estimable() (Figure 3).
+
+12-week mean weight gain by group (Figure 4).
+
+Writes tables to tables/ as .csv.
+
+2. Diagnostics script
+
+R/LMM_mouse_weight_diagnostics.R
+
+Uses the final model (m3) from the main script.
+
+Produces:
+
+Residual vs fitted plot (Figure 5a).
+
+Residual vs time plot (Figure 5b).
+
+Q–Q plot of marginal residuals (Figure 6a).
+
+Q–Q plot of random intercepts (Figure 6b).
+
+Includes simple interpretations and checks of LMM assumptions.
+
+3. Sensitivity analyses script
+
+R/LMM_mouse_weight_sensitivity.R
+
+Refits alternative models:
+
+Random intercept + random slope for tw.
+
+Autoregressive [AR(1)] within-mouse correlation.
+
+Compares AIC/BIC/logLik to the primary model.
+
+Recomputes key contrasts (weekly differences and 12-week gains).
+
+Summarises how robust the main conclusions are to these choices.
+
+Teaching document
+
+analysis/LMM_mouse_weight_teaching.Rmd
+
+A fully reproducible R Markdown document that:
+
+Introduces the scientific question and data.
+
+Walks step-by-step through:
+
+Data reshaping and plotting,
+
+Model specification and selection,
+
+Interpretation of fixed effects and random effects,
+
+Contrasts for specific questions,
+
+Diagnostics and sensitivity checks.
+
+Knits to HTML/PDF for use in class or self-study.
+
+To run:
+
+rmarkdown::render("analysis/LMM_mouse_weight_teaching.Rmd")
+
+Software environment
+
+R version: (fill in, e.g. 4.4.0)
+
+Key packages:
+
+nlme
+
+gmodels
+
+ggplot2
+
+patchwork
+
+dplyr
+
+tidyr
+
+readxl
+
+You can view exact versions via:
+
+sessionInfo()
+
+
+A copy of sessionInfo() is stored as sessionInfo.txt for reproducibility.
+
+How to reproduce all results
+
+Clone this repository:
+
+git clone https://github.com/drsunday-ade/Teaching-LMM-Mouse-BodyWeight.git
+cd Teaching-LMM-Mouse-BodyWeight
+
+
+Open Teaching-LMM-Mouse-BodyWeight.Rproj in RStudio (optional but recommended).
+
+Install required packages (once):
+
+install.packages(c(
+  "readxl", "dplyr", "tidyr", "ggplot2",
+  "patchwork", "nlme", "gmodels", "rmarkdown"
+))
+
+
+Run the main analysis:
+
+source("R/LMM_mouse_weight.R")
+
+
+Run diagnostics and sensitivity analyses:
+
+source("R/LMM_mouse_weight_diagnostics.R")
+source("R/LMM_mouse_weight_sensitivity.R")
+
+
+Knit the teaching document:
+
+rmarkdown::render("analysis/LMM_mouse_weight_teaching.Rmd")
+
+
+All figures are saved to figs/ and tables to tables/.
