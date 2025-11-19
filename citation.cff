@@ -1,11 +1,35 @@
 cff-version: 1.2.0
 message: "If you use this repository, please cite it as below."
 title: "Teaching Longitudinal Linear Mixed Models End-to-End: A Reproducible Case Study in Mouse Body-Weight Growth"
+abstract: >
+  This repository provides a fully reproducible teaching case study for
+  longitudinal linear mixed-effects models using a classic mouse body-weight
+  growth experiment. It contains raw data, R scripts, an R Markdown analysis,
+  figures, tables, and manuscript files that illustrate an end-to-end workflow
+  from data import and exploration through model fitting, diagnostics, and
+  sensitivity analyses.
 authors:
   - family-names: "Adetunji"
-    given-names: "Sunday"
+    given-names: "Sunday A."
+    affiliation: "Department of Epidemiology, College of Health, Oregon State University, Corvallis, OR, USA"
+keywords:
+  - linear mixed models
+  - longitudinal data
+  - teaching
+  - reproducible analysis
+  - R
 repository-code: "https://github.com/drsunday-ade/Teaching-LMM-Mouse-BodyWeight"
 license: "MIT"
 type: software
-version: "0.1.0"
+version: "1.0.0"
 date-released: "2025-11-18"
+
+preferred-citation:
+  type: article
+  title: "Teaching Longitudinal Linear Mixed Models End-to-End: A Reproducible Case Study in Mouse Body-Weight Growth"
+  authors:
+    - family-names: "Adetunji"
+      given-names: "Sunday A."
+      affiliation: "Department of Epidemiology, College of Health, Oregon State University, Corvallis, OR, USA"
+  year: 2025
+  notes: "Teaching manuscript and software repository."
